@@ -88,7 +88,8 @@ A network is not functional without core services. This phase involved setting u
 * **DHCP & DHCP Relay:** A central DHCP server was configured. The `ip helper-address` command was configured on the distribution switch SVIs.
     * **Rationale:** DHCP automates the assignment of IP addresses. Since DHCP requests are broadcasts and cannot cross routers, the **IP helper-address** command is essential for allowing a single, centralized server to service clients across multiple subnets.
 
-<img width="2996" height="1186" alt="image" src="https://github.com/user-attachments/assets/992152b8-3c72-4e3f-acb3-0e9283d517f8" />
+<img width="3024" height="1246" alt="image" src="https://github.com/user-attachments/assets/25f6b2a3-ed25-4ab2-83cb-c71527a88a7f" />
+
 
 * **DNS, NTP, SNMP, Syslog:** These critical network services were configured.
     * **Rationale:** **DNS** for name resolution, **NTP** for time synchronization (critical for log correlation), **SNMP** for network monitoring, and **Syslog** for centralized logging are all fundamental to a manageable network.
