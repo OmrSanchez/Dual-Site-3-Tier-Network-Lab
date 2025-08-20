@@ -59,6 +59,8 @@ With a stable Layer 2 fabric, the next step was to enable inter-VLAN routing and
 * **HSRP (Hot Standby Router Protocol):** HSRP was configured on the distribution switches for each VLAN. The active HSRP router was varied between the two distribution switches for different VLANs.
     * **Rationale:** HSRP provides **default gateway redundancy**. Two or more routers share a virtual IP address. If the active router fails, the standby router seamlessly takes over. By making DSW-1 active for some VLANs and DSW-2 active for others, we achieve **load balancing** in addition to redundancy under normal operating conditions.
 
+<img width="2996" height="1750" alt="image" src="https://github.com/user-attachments/assets/b2cf9f55-5315-4bc7-b0ef-1a466e58cc6d" />
+
 ### Part 4: Spanning Tree Protocol (STP) Optimization
 
 STP is crucial for preventing Layer 2 loops. This phase focused on tuning STP for stability, fast convergence, and predictable traffic flow.
@@ -77,6 +79,8 @@ This phase established dynamic routing, allowing the network to automatically le
 * **Default Route Injection:** A static default route was configured on the R1 "edge" router pointing to the cloud, and this route was injected into the OSPF domain using the `default-information originate` command.
     * **Rationale:** This allows all internal routers to automatically learn the path to the internet. It's more scalable and manageable than configuring static default routes on every router in the network.
 
+<img width="1498" height="882" alt="Screenshot 2025-08-20 at 12 43 19 PM" src="https://github.com/user-attachments/assets/bdca082f-1f52-48a0-8910-fcc0076fde41" />
+
 ### Part 6: Core Network Services
 
 A network is not functional without core services. This phase involved setting up DHCP, DNS, and other essential protocols for management and operation.
@@ -90,6 +94,8 @@ A network is not functional without core services. This phase involved setting u
     * **FTP** was used to demonstrate IOS upgrade procedures.
     * **Static NAT** was configured to map a public IP address to an internal server.
     * **Dynamic PAT (Overload)** was configured to translate many private internal addresses to a small pool of public addresses, conserving IPv4 space.
+      
+<img width="1510" height="875" alt="Screenshot 2025-08-20 at 12 46 47 PM" src="https://github.com/user-attachments/assets/ae381a67-0cbb-49aa-969a-badc9137a946" />
 
 ### Part 7: ACLs and Layer 2 Security
 
@@ -102,6 +108,8 @@ With the network fully functional, the focus shifted to implementing security po
 * **DHCP Snooping & Dynamic ARP Inspection (DAI):**
     * **Rationale:** These are advanced security features that prevent common LAN attacks. **DHCP Snooping** builds a trusted binding table and stops rogue DHCP servers. **DAI** uses that table to validate ARP packets, preventing man-in-the-middle attacks that rely on ARP poisoning.
 
+<img width="2996" height="1764" alt="image" src="https://github.com/user-attachments/assets/001c0f49-9b3b-4ca4-b9ed-084e195ad946" />
+
 ### Part 8: IPv6 Implementation
 
 The final phases introduced forward-looking technology to demonstrate modern networking skills.
@@ -109,33 +117,9 @@ The final phases introduced forward-looking technology to demonstrate modern net
 * **IPv6:** Basic IPv6 addressing (including EUI-64) and static default routing were configured on the core and edge devices.
     * **Rationale:** Demonstrates the ability to configure and operate a dual-stack (IPv4 and IPv6) network, a crucial skill as the internet continues its transition to IPv6.
 
----
+* **Connectivity:** Verify Site-to-Site Connectivity
+<img width="2996" height="1186" alt="image" src="https://github.com/user-attachments/assets/4b7796a4-93fa-442b-be45-626680063b0c" />
 
-## Recommended Images for Showcase
-
-To visually prove and explain your configurations, I recommend capturing CLI output for the following key technologies.
-
-1.  **HSRP Redundancy:**
-    * **Command:** `show standby brief`
-    * **Why:** This is the definitive command for verifying HSRP. It clearly shows the virtual IP, which router is `Active` and which is `Standby`, and their priorities. Show this from both distribution switches to highlight the active/standby roles and load balancing.
-    * 
-
-2.  **OSPF Routing:**
-    * **Commands:** `show ip ospf neighbor` and `show ip route ospf`
-    * **Why:** The first command proves that your OSPF adjacencies are correctly formed. The second command shows the specific routes learned via OSPF, confirming that your routing protocol is successfully propagating network reachability information.
-    * 
-
-3.  **NAT/PAT Translations:**
-    * **Command:** `show ip nat translations`
-    * **Why:** After generating traffic, this command displays the active translation table. It shows the mapping from the inside local address (private IP) to the inside global address (public IP), demonstrating that PAT is working as intended.
-    * 
-
-4.  **Layer 2 Security (DHCP Snooping & DAI):**
-    * **Commands:** `show ip dhcp snooping binding` and `show ip arp inspection statistics`
-    * **Why:** The first command displays the trusted MAC-to-IP address bindings, which is the database DAI uses. The second command shows statistics on how many ARP packets have been inspected, dropped, or forwarded, proving that DAI is actively protecting the network.
-    * 
-
-5.  **End-to-End Connectivity:**
-    * **Action:** A `traceroute` from a PC in the "Remote" site to a server in the "Local" site.
-    * **Why:** A successful traceroute is the ultimate proof that your entire network is integrated and functioning correctly. It shows the packet's path hop-by-hop through the access, distribution, and core layers, validating everything from Layer 2 forwarding to dynamic routing.
-    *
+* **Connectivity:** Verfiy Internet Connectivity  
+<img width="2996" height="1666" alt="image" src="https://github.com/user-attachments/assets/7a5eaec8-d40a-431f-a57b-337e7e3d4106" />
+___
