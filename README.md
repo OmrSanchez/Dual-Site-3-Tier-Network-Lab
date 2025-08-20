@@ -29,7 +29,7 @@ The network is structured in a three-tier hierarchy:
 2.  **Distribution Layer:** This is the "workhorse" layer that aggregates traffic from the Access layer. It serves as the boundary between Layer 2 and Layer 3 domains, and is the primary point for routing, policy enforcement (ACLs), and first-hop redundancy (HSRP).
 3.  **Core Layer:** The backbone of the network, providing high-speed, reliable transport between distribution layer devices and sites. This layer is engineered for speed and availability, focusing purely on switching packets as fast as possible without complex policy manipulation.
 
-
+<img width="1920" height="1080" alt="Screenshot 2025-08-20 at 11 53 58 AM" src="https://github.com/user-attachments/assets/4bfc7b52-76bc-4cec-a1a7-067bcf52b881" />
 
 ---
 
